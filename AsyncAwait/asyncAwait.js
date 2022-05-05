@@ -5,6 +5,7 @@ class HttpError extends Error {
         this.response = response;
     }
 }
+
 async function loadJson(url) {
 
     const response = await fetch(url); 
@@ -19,11 +20,10 @@ async function demoGithubUser() {
     let name = prompt("Enter a name?", "vanimar");
 
     try {
-        
         const user = await loadJson(`https://api.github.com/users/${name}`);
         alert(`Full name: ${user.name}.`);
         return user;
-    } catch (error) {
+    } catch (err) {
         if (err instanceof HttpError && err.response.status == 404) {
             alert("No such user, please reenter.");
             return demoGithubUser();
