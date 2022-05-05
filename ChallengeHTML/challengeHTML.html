@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Web Component Bootcamp</title>
+</head>
+<body>
+
+    <jala-card
+        id="Squirtle"
+        image="https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png"
+        name="Squirtle"
+        position="Developer"
+    ></jala-card>
+    <jala-card
+        id="Charmander"
+        image="https://assets.pokemon.com/assets/cms2/img/pokedex/full/004.png"
+        name="Charmander"
+        position="Product Owner"
+    ></jala-card>
+    <jala-card
+        id="Bulvasaur"
+        image="https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png"
+        name="Bulbasaur"
+        position="DevOps"
+    ></jala-card>
+
+<template id="userCardTemplate">
+    <style>
+    :host {
+        display: flex;
+        overflow: hidden;
+        padding: 10px;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .image {
+        flex: 0 0 auto;
+        width: 160px;
+        height: auto;
+        vertical-align: middle;
+        border-radius: 5px;
+        margin: 10px 0px;
+    }
+
+    .header-image {
+        flex: 0 0 auto;
+        width: 80%;
+        padding: 2px 10%;
+        height: 20px;
+        height: 50px;
+        background-color: white;
+    }
+
+    .container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        border: 3px solid rgb(40, 40, 40);;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+        background-color: rgb(40, 40, 40);
+        border-radius: 3px;
+        box-sizing: border-box;
+        width: 220px;
+        height: 320px;
+    }
+
+    /* .card-content {
+        
+        background-color: rgb(40, 40, 40);
+    } */
+
+    .container > .name,.position {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 1;
+        margin: 0;
+        color: white;
+    }
+
+    .container > .position {
+        position: absolute;
+        bottom: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0px;
+        width: 100%;
+        height: 40px;
+        background-color: rgb(239, 41, 61);
+    }
+
+
+    </style>
+    <div class="container">
+        <img src="" class="header-image">
+        <img src="" class="image">
+        <p class="name"></p>
+        <p class="position"></p>
+    </div>
+</template>
+
+
+<script>
+class JalaId extends HTMLElement {
+    constructor() {
+        super();
+
+        let shadow = this.attachShadow( { mode: 'closed' } );
+
+        let templateElem = document.getElementById('userCardTemplate');
+        let content = templateElem.content.cloneNode(true);
+
+        content.querySelector('.header-image').setAttribute('src', 'https://jalasoft.com/img/logo-jalasoft.svg');
+        content.querySelector('.image').setAttribute('src', this.getAttribute('image'));
+        content.querySelector('.container>.name').innerText = this.getAttribute('name');
+        content.querySelector('.container>.position').innerText = this.getAttribute('position');
+
+        shadow.appendChild(content);
+    }
+}
+customElements.define('jala-card', JalaId);
+</script>
+</body>
+</html>
