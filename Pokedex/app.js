@@ -1,9 +1,10 @@
 import { dataPokemons, getPokemonImageUri, pokemonColorMap } from "./utils.js"
 
-const createPokemonCard = ( image, name, color = '' ) => {
+const createPokemonCard = ( image, name, color) => {
     
     const card = document.createElement('div');
-    card.classList.add('pokemon-card',`color-${color}`);
+    card.classList.add('pokemon-card');
+    card.style.backgroundColor = color;
 
     const pokemonImage = document.createElement('img');
     pokemonImage.src = image;

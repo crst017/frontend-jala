@@ -264,9 +264,3 @@ export function getPokemonImageUri(id) {
   const imageId = ("00" + id).slice(-3); // para 1 => 001
   return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${imageId}.png`;
 }
-
-export function getPokemonType(id) {
-    const data = `https://pokeapi.co/api/v2/pokemon/${id}/`;
-    console.log(data.types[0])
-    return data.types[0]
-}
