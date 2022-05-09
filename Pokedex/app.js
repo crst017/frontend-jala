@@ -1,4 +1,8 @@
-import { dataPokemons, getPokemonImageUri, pokemonColorMap } from "./utils.js"
+import { getPokemonImageUri, pokemonColorMap, getPokemons } from "./utils.js"
+const API_URL = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=25'
+
+getPokemons(API_URL)
+    .then( res => renderCards(res))
 
 const createPokemonCard = ( image, name, color) => {
     
@@ -18,14 +22,17 @@ const createPokemonCard = ( image, name, color) => {
     return card
 }
 
-dataPokemons.results.forEach( (pokemon, index) => {
+const renderCards = ( dataPokemons ) => {
+    dataPokemons.results.forEach( (pokemon, index) => {
 
-    const image = getPokemonImageUri(index + 1);
-    const color = pokemonColorMap[index+1]
-    const name = pokemon.name;
-    const pokemonCard = createPokemonCard(image,name,color);
+        const image = getPokemonImageUri(index + 1);
+        const color = pokemonColorMap[index+1]
+        const name = pokemon.name;
+        const pokemonCard = createPokemonCard(image,name,color);
+    
+        const container = document.querySelector('.cards-container');
+        container.appendChild(pokemonCard);
+    });
+}
 
-    const container = document.querySelector('.cards-container');
-    container.appendChild(pokemonCard);
-});
 
