@@ -1,6 +1,30 @@
+header {
+    grid-area: header;
+    height: 80px;
+    padding: 0 40px;
+}
+
+main {
+    grid-area: main;
+}
+
+footer {
+    grid-area: footer;
+    height: 80px;
+    padding: 0 40px;
+}
+
+body {
+    display: grid;
+    grid-template-columns: repeat( 12, 1fr );
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "header header header header header header header header header header header header"
+    ". main main main main main main main main main main ."
+    "footer footer footer footer footer footer footer footer footer footer footer footer";
+}
+
 .cards-container {
-    margin: 0 auto;
-    width: 80%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -14,7 +38,7 @@
     align-items: center;
     border: 1px solid black;
     border-radius: 20px;
-    width: 33%;
-    max-width: 190px;
+    min-width: 190px;
+    max-width: 210px;
     cursor: pointer;
 }
