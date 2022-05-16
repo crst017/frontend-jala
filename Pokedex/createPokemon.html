@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Create Pokémon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./styles/form-validation.css">
+</head>
+
+<body class="bg-light">
+    <div class="container">
+      <main class="py-5">
+        
+        <div class="row g-5">
+
+            <div class="col-md-5 col-lg-5 order-md-last">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text">Attributes info</span>
+                </h4>
+
+
+                <div class="border rounded p-3">
+
+                    <div>
+                        <span class="badge bg-primary">Name</span>
+                        <p class="mb-2">What is the name of the Pokémon ?</p>
+                    </div>
+                    <div>
+                        <span class="badge bg-primary">Weight</span>
+                        <p class="mb-2">How much does it weigh ?</p>
+                    </div>
+                    <div>
+                        <span class="badge bg-primary">Height</span>
+                        <p class="mb-2">How tall is it ? </p>
+                    </div>
+                    <div>
+                        <span class="badge bg-primary">Game version</span>
+                        <p class="mb-2">In which versions of the game is the Pokémon in? 
+                            Can be more than one
+                        </p>
+                    </div>
+                    <div>
+                        <span class="badge bg-primary">Type</span>
+                        <p class="mb-2">What kind of Pokémon is it ?</p>
+                    </div>
+                    
+
+                </div>
+            </div>
+
+          <div class="col-md-7 col-lg-7">
+              
+            <h4 class="mb-3">New Pokémon</h4>
+            <form class="needs-validation" novalidate>
+              <div class="row g-3">
+                  
+                <div class="col-12">
+                  <label for="name" class="form-label">Pokémon name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    placeholder="Pokémon name"
+                    required
+                  />
+                </div>
+
+                <div class="col-sm-6">
+                  <label for="weight" class="form-label">Weight</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="weight"
+                    placeholder="Pokémon weight"
+                    value=""
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Valid weight is required.
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <label for="height" class="form-label">Height</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="height"
+                    placeholder="Pokémon height"
+                    value=""
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Valid height is required.
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="game-version" class="form-label">Game version</label>
+
+                  <div class="form-check">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="firered"
+                    />
+                    <label class="form-check-label" for="firered">FireRed</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="leafgreen"
+                    />
+                    <label class="form-check-label" for="leafgreen">Leaf Green</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="emerald"
+                    />
+                    <label class="form-check-label" for="emerald">Emerald</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="ruby"
+                    />
+                    <label class="form-check-label" for="ruby">Ruby</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="sapphire"
+                    />
+                    <label class="form-check-label" for="sapphire">Sapphire</label>
+                  </div>
+                </div>
+
+
+                <div class="col-md-6">
+                  <label for="pokemon-type" class="form-label">Type</label>
+
+                  <select class="form-select" id="pokemon-type" required>
+                    <option value="">Choose...</option>
+                    <option>Fire</option>
+                    <option>Water</option>
+                    <option>Electric</option>
+                    <option>Bug</option>
+                    <option>Flying</option>
+                  </select>
+
+                  <div class="invalid-feedback">
+                    Please select a valid country.
+                  </div>
+                </div>
+              </div>
+              <hr class="my-4" />
+
+              <button class="w-75 btn btn-primary btn-lg" type="submit">
+                Save Pokémon
+              </button>
+              
+            </form>
+          </div>
+        </div>
+      </main>
+
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2017–2021 Company Name</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Privacy</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+      </footer>
+    </div>
+
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="form-validation.js"></script>
+  </body>
+</html>
