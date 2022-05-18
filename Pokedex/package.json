@@ -1,5 +1,17 @@
 {
   "dependencies": {
     "less": "^4.1.2"
-  }
+  },
+  "name": "pokedex",
+  "version": "1.0.0",
+  "main": "utils.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "node ./tools/preinstall.js"
+  },
+  "keywords": [],
+  "author": "Cristian Navarro León <cristiannl.0117@gmail.com>",
+  "license": "ISC",
+  "description": ""
 }
