@@ -7,6 +7,8 @@
   "main": "utils.js",
   "devDependencies": {
     "grunt": "^1.5.3",
+    "grunt-contrib-clean": "^2.0.1",
+    "grunt-contrib-less": "^3.0.0",
     "grunt-contrib-uglify": "^5.2.1"
   },
   "scripts": {
