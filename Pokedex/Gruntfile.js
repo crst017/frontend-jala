@@ -18,7 +18,7 @@ module.exports = function(grunt) {
         uglify: {
             build: {
                 files: {
-                    'dist/js/test.min.js': ['utils/*.js','js/*.js'],
+                    'dist/js/app.min.js': ['utils/*.js','js/*.js'],
                 }
             }
         },
@@ -27,11 +27,19 @@ module.exports = function(grunt) {
               force: true,
             },
             files: ['dist']
+        },
+        processhtml: {
+            dist : {
+                files: {
+                    'dist/index.html' : 'index.html'
+                }
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-clean');  
-    grunt.registerTask('default', ['clean','uglify','less']);
+    grunt.loadNpmTasks('grunt-processhtml');  
+    grunt.registerTask('default', ['clean','uglify','less','processhtml']);
 }
