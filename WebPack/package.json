@@ -8,14 +8,22 @@
     "build": "webpack",
     "dev": "webpack --mode=development",
     "prod": "webpack --mode=production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:dev": "webpack --config config/webpack.dev.js",
+    "build:prod": "webpack --config config/webpack.prod.js"
   },
   "keywords": [],
   "author": "Cristian Navarro León <cristiannl.0117@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "css-loader": "^6.7.1",
     "lodash": "^4.17.21",
+    "sass": "^1.52.1",
+    "sass-loader": "^13.0.0",
+    "style-loader": "^3.3.1",
     "webpack": "^5.72.1",
-    "webpack-cli": "^4.9.2"
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0",
+    "webpack-merge": "^5.8.0"
   }
 }
