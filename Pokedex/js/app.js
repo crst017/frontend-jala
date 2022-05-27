@@ -1,4 +1,5 @@
-// import { getPokemonImageUri, pokemonColorMap, getPokemons } from "../utils/index.js"
+import '../styles/less/style.less'
+import { getPokemonImageUri, pokemonColorMap, getPokemons } from "../utils/index.js"
 const API_URL = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=25'
 
 getPokemons(API_URL)

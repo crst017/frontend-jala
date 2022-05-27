@@ -1,20 +1,27 @@
 {
-  "dependencies": {
-    "grunt-processhtml": "^0.4.3",
-    "less": "^4.1.2"
-  },
   "name": "pokedex",
   "version": "1.0.0",
   "main": "utils.js",
   "devDependencies": {
+    "css-loader": "^6.7.1",
     "grunt": "^1.5.3",
     "grunt-contrib-clean": "^2.0.1",
     "grunt-contrib-less": "^3.0.0",
-    "grunt-contrib-uglify": "^5.2.1"
+    "grunt-contrib-uglify": "^5.2.1",
+    "grunt-processhtml": "^0.4.3",
+    "less": "^4.1.2",
+    "less-loader": "^11.0.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0",
+    "webpack-merge": "^5.8.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "node ./tools/preinstall.js"
+    "preinstall": "node ./tools/preinstall.js",
+    "build:dev": "webpack --config config/webpack.dev.js",
+    "build:prod": "webpack --config config/webpack.prod.js"
   },
   "keywords": [],
   "author": "Cristian Navarro León <cristiannl.0117@gmail.com>",

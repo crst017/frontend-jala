@@ -1,4 +1,4 @@
-const pokemonColorMap = {
+export const pokemonColorMap = {
   1: "#4ca04c", //green
   2: "#4ca04c",
   3: "#4ca04c",
@@ -152,13 +152,13 @@ const pokemonColorMap = {
   151: "#ffb6c3",
 };
 
-async function getPokemons ( url ) {
+export async function getPokemons ( url ) {
     const response = await fetch(url);
     const data = await response.json()
     return data;
 }   
 
-function getPokemonImageUri(id) {
+export function getPokemonImageUri(id) {
   const imageId = ("00" + id).slice(-3); // para 1 => 001
   return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${imageId}.png`;
 }
