@@ -1,39 +1,32 @@
-const { merge } = require('webpack-merge');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const commonConfig = require('./webpack.common');
-const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const commonConfig = require('./webpack.common');
+const { merge } = require('webpack-merge');
+const path = require('path');
 
-const devConfig = {
+const prodConfig = {
     mode: 'production',
     output: {
-        filename: 'main.js',
+        filename: 'app.[fullhash].js',
         path: path.join(__dirname + '/..', 'prod')
     },
-    module: {
-        rules: [
-            {
-                test: /\.less$/i,
-                use: [
-                    // compiles Less to CSS
-                    "style-loader",
-                    "css-loader",
-                    "less-loader",
-                ],
-            }
-        ],
-    },
     plugins: [
-        // new MiniCssExtractPlugin(),
-        new HtmlWebpackPlugin({
-            template: 'index.html',
-            filename: 'index.html',
-            inject: 'body'
+        new MiniCssExtractPlugin({
+            filename: 'style.[fullhash].css'
         })
     ],
+    optimization: {
+        minimize: true,
+        minimizer: [
+          new CssMinimizerPlugin(),
+          new TerserPlugin()
+        ],
+    },
 };
 
 module.exports = merge(
     commonConfig,
-    devConfig
+    prodConfig
 );

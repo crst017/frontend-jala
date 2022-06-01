@@ -1,14 +1,29 @@
 const path = require('path');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: [
         './js/app.js',
         './js/form-validation.js',
-    ]
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.less$/i,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    "less-loader",
+                ],
+            }
+        ],
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: 'index.html',
+            filename: 'index.html',
+            inject: 'body'
+        })
+    ],
 }
-
-
-// Los loaders son una especia de plugin para que webpack pueda entender otro tipo de archivos
-// Test -> Archivos a leer y formato a leer 
-// Use -> Dependencias que se instalan para que puedan leer y traducir 
-// Style loager y css loader para entender el css 

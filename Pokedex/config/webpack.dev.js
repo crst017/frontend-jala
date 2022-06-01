@@ -2,25 +2,20 @@ const { merge } = require('webpack-merge');
 const commonConfig = require('./webpack.common');
 const path = require('path');
 
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const devConfig = {
     mode: 'development',
     output: {
-        filename: 'main.js',
+        filename: 'app.js',
         path: path.join(__dirname + '/..', 'dev')
     },
-    module: {
-        rules: [
-            {
-                test: /\.less$/i,
-                use: [
-                    // compiles Less to CSS
-                    "style-loader",
-                    "css-loader",
-                    "less-loader",
-                ],
-            },
-        ],
-    }
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: 'style.css'
+        })
+    ]
 };
 
 module.exports = merge(
