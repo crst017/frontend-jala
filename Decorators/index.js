@@ -11,12 +11,10 @@ var checkPP = function () { return function (target, propertyKey, descriptor) {
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        if (this.ppAvailable > 0) {
-            original.apply(this, args);
-        }
-        else {
+        if (this.ppAvailable < 1)
             console.log('Not enough PP for fighting');
-        }
+        else
+            original.apply(this, args);
     };
     return descriptor;
 }; };
@@ -38,6 +36,6 @@ var Pokemon = /** @class */ (function () {
     return Pokemon;
 }());
 var thunderbolt = { name: 'thunderbolt', power: 90 };
-var pikachu = new Pokemon('pikachu', 1);
+var pikachu = new Pokemon('Pikachu', 1);
 pikachu.figth(thunderbolt);
 pikachu.figth(thunderbolt);

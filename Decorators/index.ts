@@ -1,3 +1,8 @@
+type Move = {
+    name: string,
+    power: number
+};
+
 const checkPP = () => ( 
     target: Object, 
     propertyKey: string, 
@@ -7,21 +12,12 @@ const checkPP = () => (
     const original = descriptor.value;
 
     descriptor.value = function(...args : any[]) {
-        if ( this.ppAvailable > 0 ) {
-            original.apply(this, args);
-        }
-        else {
-            console.log( 'Not enough PP for fighting');
-        }
+        if ( this.ppAvailable < 1 ) console.log( 'Not enough PP for fighting');
+        else original.apply(this, args);
     }
 
     return descriptor
 }
-
-type Move = {
-    name: string,
-    power: number
-};
 
 class Pokemon {
   name: string;
