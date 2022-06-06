@@ -1,35 +1,49 @@
+const checkPP = () => ( 
+    target: Object, 
+    propertyKey: string, 
+    descriptor: PropertyDescriptor
+) => {
+
+    const original = descriptor.value;
+
+    descriptor.value = function(...args : any[]) {
+        if ( this.ppAvailable > 0 ) {
+            original.apply(this, args);
+        }
+        else {
+            console.log( 'Not enough PP for fighting');
+        }
+    }
+
+    return descriptor
+}
+
 type Move = {
     name: string,
     power: number
 };
 
-const checkPP = (pp: number) => {
-  if (pp > 0) {
-    return true
-  }
-  return false
-}
-
 class Pokemon {
   name: string;
-  ppAvailable = 1;
+  ppAvailable: number;
+
   constructor(name: string, ppAvailable: number) {
     this.name = name;
     this.ppAvailable = ppAvailable;
   }
   
-  @checkPP(1)
+  @checkPP()
   figth(move: Move) {
     console.log(`${this.name} used ${move?.name}!`);
     this.ppAvailable -= 1;
   }
 
-  calculateDamage(move: any) {
+  calculateDamage(move: Move): number {
     return move.power;
   }
 }
 
 const thunderbolt: Move = {name: 'thunderbolt', power: 90};
-const pikachu = new Pokemon('pikachu', 1);
+const pikachu = new Pokemon('Pikachu', 1);
 pikachu.figth(thunderbolt);
 pikachu.figth(thunderbolt);
