@@ -55,19 +55,25 @@ export class Pokemon {
     this.buildFieldsPokemon(pokemonResult);
   }
 
-  buildFieldsPokemon(pokemon: any) {
+  async buildFieldsPokemon(pokemon: any) {
     this.name = pokemon.name;
     this.id = pokemon.id;
-    this.setPokemonTypes();
-    this.setPokemonMoves();
+    this.types = await this.getPokemonTypes();
+    this.moves = await this.setPokemonMoves();
+    this.displayInfo();
     // you can only choose four moves from the list of moves
     // this.moves = someFn(pokemon.moves);
   }
 
-    async setPokemonTypes() {
+    async getPokemonTypes() {
         const pokemonInfo = await getPokemonInfo( this.id );
         const pokemonTypes = pokemonInfo.types;
-        this.types = pokemonTypes
+
+        const returnTypes = pokemonTypes.map( type => {
+            return type.type
+        });
+        
+        return returnTypes
     }
 
     async setPokemonMoves() {
@@ -75,24 +81,41 @@ export class Pokemon {
         const pokemonInfo = await getPokemonInfo( this.id );
         const pokemonMoves = pokemonInfo.moves
         const max = pokemonMoves.length
+        const newMoves = []
 
         for (let i = 0; i < 4; i++) {
             const number = Math.floor(Math.random() * (max + 1));
-            this.moves.push( pokemonMoves[number] )
+            const moveBasicInfo = pokemonMoves[number].move;
+            const moveURL: string = moveBasicInfo.url;
+            let moveURLInfo: any = await axios.get(moveURL);
+            moveURLInfo = moveURLInfo.data;
+
+            const newMove : Move = {
+                name: moveBasicInfo.name,
+                url: moveBasicInfo.url,
+                type: moveURLInfo.type.name,
+                damage: moveURLInfo.power,
+                powerPoints: moveURLInfo.pp,
+                accuracy: moveURLInfo.accuracy
+            }
+            newMoves.push( newMove );
         }
+        return newMoves
     }
 
-  displayInfo() {
-    console.log(`==========================`);
-    console.log(`${this.id} ${this.name}`);
-    this.types.forEach(type => {
-      console.log(`${type.name}`);
-    });
-    this.moves.forEach(move => {
-      console.log(`${move.name}`);
-    });
-  }
+    displayInfo() {
+        console.log(`==========================`);
+        console.log(`${this.id} ${this.name}`);
+        this.types.forEach(type => {
+            console.log(`${type.name}`);
+        });
+        this.moves.forEach(move => {
+            console.log(`${move.name}`);
+        });
+    }
 }
+
+// re-write decortator to get new pokemons Ids in PokemonTrainer class 
 
 export class PokemonTrainer {
   name: string;
