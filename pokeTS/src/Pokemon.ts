@@ -4,7 +4,6 @@ import axios from "axios";
 Pokemon class
   - one pokemon has name, id, types and moves
   
-
 List of goals:
   - create a function to get all information of a pokemon from result of getSinglePokemon
   - get a List of types from a pokemon, assing to a variable called types
@@ -16,19 +15,11 @@ export function getSinglePokemon(id: string | number) {
   return axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
 }
 
+export async function getPokemonInfo( searchId : string | number ) {
 
-export async function getPokemonInfo( id : string | number ) {
-
-    const result = await getSinglePokemon( id );
-    console.log(result.data.moves.length)
-    return result.data
-}
-
-
-function getNewPokemons<T extends { new(...args: any[]): {} }>(constructor: T) {
-  return class extends constructor {
-    listOfIds = [1,2,3];
-  }
+    const result = await getSinglePokemon( searchId );
+    const { id, name, types, moves } = result.data;
+    return { id, name, types, moves }
 }
 
 type Move = {
@@ -41,29 +32,29 @@ type Move = {
 };
 
 type Type = {
-  name: string;
-  url: string;
+    name: string;
+    url: string;
 };
 
 export class Pokemon {
-  name: string = '';
-  id: number = 0;
-  moves: Move[] = [];
-  types: Type[] = [];
+    name: string = '';
+    id: number = 0;
+    moves: Move[] = [];
+    types: Type[] = [];
 
-  constructor(pokemonResult: any) {
-    this.buildFieldsPokemon(pokemonResult);
-  }
+    constructor(pokemonResult: any) {
+        this.buildFieldsPokemon(pokemonResult);
+    }
 
-  async buildFieldsPokemon(pokemon: any) {
-    this.name = pokemon.name;
-    this.id = pokemon.id;
-    this.types = await this.getPokemonTypes();
-    this.moves = await this.setPokemonMoves();
-    this.displayInfo();
-    // you can only choose four moves from the list of moves
-    // this.moves = someFn(pokemon.moves);
-  }
+    async buildFieldsPokemon(pokemon: any) {
+        this.name = pokemon.name;
+        this.id = pokemon.id;
+        this.types = await this.getPokemonTypes();
+        this.moves = await this.setPokemonMoves();
+        this.displayInfo();
+        // you can only choose four moves from the list of moves
+        // this.moves = someFn(pokemon.moves);
+    }
 
     async getPokemonTypes() {
         const pokemonInfo = await getPokemonInfo( this.id );
@@ -79,11 +70,12 @@ export class Pokemon {
     async setPokemonMoves() {
 
         const pokemonInfo = await getPokemonInfo( this.id );
-        const pokemonMoves = pokemonInfo.moves
-        const max = pokemonMoves.length
-        const newMoves = []
+        const pokemonMoves = pokemonInfo.moves;
+        const max = pokemonMoves.length;
+        let newMoves: Move[] = [];
 
         for (let i = 0; i < 4; i++) {
+
             const number = Math.floor(Math.random() * (max + 1));
             const moveBasicInfo = pokemonMoves[number].move;
             const moveURL: string = moveBasicInfo.url;
@@ -117,27 +109,37 @@ export class Pokemon {
 
 // re-write decortator to get new pokemons Ids in PokemonTrainer class 
 
+function getNewPokemons<T extends { new(...args: any[]): {} }>(constructor: T) {
+    return class extends constructor {
+        listOfIds = [1,2,3];
+    }
+}
+
+@getNewPokemons
 export class PokemonTrainer {
-  name: string;
-  pokemons: Pokemon[] = [];
-  listOfIds: number[] = [2,4];
-  constructor(name: string) {
-    this.name = name;
-  }
 
-  async getPokemons() {
-    const listPokemons = this.listOfIds.map(id => getSinglePokemon(id));
-    const results = await Promise.all(listPokemons)
-    results.forEach(result => {
-      this.pokemons.push(new Pokemon(result.data));
-    });
-  }
+    name: string;
+    pokemons: Pokemon[] = [];
+    listOfIds: number[] = [2,4];
+    constructor(name: string) {
+        this.name = name;
+    }
 
-  async showTeam() {
-    await this.getPokemons();
-    console.log('Trainer:', this.name);
-    this.pokemons.forEach(pokemon => {
-      pokemon.displayInfo();
-    });
-  }
+    async getPokemons() {
+        const listPokemons = this.listOfIds.map(id => getSinglePokemon(id));
+        const results = await Promise.all(listPokemons)
+        results.forEach(result => {
+            const newPokemon = new Pokemon(result.data);
+            console.log(newPokemon);
+            this.pokemons.push( newPokemon );
+        });
+    }
+
+    async showTeam() {
+        await this.getPokemons();
+        console.log('Trainer:', this.name);
+        this.pokemons.forEach(pokemon => {
+            pokemon.displayInfo();
+        });
+    }
 }
