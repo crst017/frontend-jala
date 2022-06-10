@@ -110,8 +110,15 @@ export class Pokemon {
 // re-write decortator to get new pokemons Ids in PokemonTrainer class 
 
 function getNewPokemons<T extends { new(...args: any[]): {} }>(constructor: T) {
+    
+    const max = 150;
+    const ids = []
+    for (let i = 0; i < 3; i++) {
+        const number = Math.floor(Math.random() * (max + 1));
+        ids.push(number)
+    }
     return class extends constructor {
-        listOfIds = [1,2,3];
+        listOfIds = ids;
     }
 }
 
@@ -130,7 +137,6 @@ export class PokemonTrainer {
         const results = await Promise.all(listPokemons)
         results.forEach(result => {
             const newPokemon = new Pokemon(result.data);
-            console.log(newPokemon);
             this.pokemons.push( newPokemon );
         });
     }
