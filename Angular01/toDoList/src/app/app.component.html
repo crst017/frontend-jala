@@ -1,0 +1,17 @@
+<main>
+
+  <h1>Todos</h1>
+
+  <div class="container">
+    <form (submit)="onSubmit($event)">
+
+      <input (keyup)="onKey($event)"
+      type="text" placeholder="What needs to be done?">
+      <ul>
+        <li>{{ firstTask }}</li>
+      </ul>
+
+    </form>
+  </div>
+</main>
+

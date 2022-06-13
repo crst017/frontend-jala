@@ -60,9 +60,7 @@ export class Pokemon {
         const pokemonInfo = await getPokemonInfo( this.id );
         const pokemonTypes = pokemonInfo.types;
 
-        const returnTypes = pokemonTypes.map( type => {
-            return type.type
-        });
+        const returnTypes = pokemonTypes.map( type => type.type );
         
         return returnTypes
     }
@@ -97,12 +95,14 @@ export class Pokemon {
 
     displayInfo() {
         console.log(`==========================`);
-        console.log(`${this.id} ${this.name}`);
+        console.log(`ID: ${this.id}, Name: ${this.name}`);
+        console.log(`Types: `);
         this.types.forEach(type => {
-            console.log(`${type.name}`);
+            console.log(`   ${type.name}`);
         });
+        console.log(`Movements: `);
         this.moves.forEach(move => {
-            console.log(`${move.name}`);
+            console.log(`   ${move.name}`);
         });
     }
 }
@@ -135,8 +135,8 @@ export class PokemonTrainer {
     async getPokemons() {
         const listPokemons = this.listOfIds.map(id => getSinglePokemon(id));
         const results = await Promise.all(listPokemons)
-        results.forEach(result => {
-            const newPokemon = new Pokemon(result.data);
+        results.map(async result => {
+            const newPokemon = await new Pokemon(result.data);
             this.pokemons.push( newPokemon );
         });
     }
@@ -144,7 +144,7 @@ export class PokemonTrainer {
     async showTeam() {
         await this.getPokemons();
         console.log('Trainer:', this.name);
-        this.pokemons.forEach(pokemon => {
+        this.pokemons.map(pokemon => {
             pokemon.displayInfo();
         });
     }
