@@ -1,6 +1,6 @@
 <section class="todoapp">
   <header class="header">
-    <h1>tareas</h1>
+    <h1>Tareas</h1>
     <input
     id="new-todo"
     [(ngModel)]="nuevaTarea"
@@ -12,8 +12,22 @@
   </header>
   <section id="main" class="main">
     <ul id="todo-list" class="todo-list">
-      <li *ngFor="let tarea of listaTareas">
-        <label>{{ tarea }}</label>
+      <li *ngFor="let tarea of listaTareas; index as i">
+        <span class="completed-icon"
+          (click)="onCompleted(i)"
+          [ngClass]="{
+            'completed': tarea.completed
+          }">
+        </span>
+        <label
+          [ngClass]="{
+            'completed': tarea.completed
+          }">{{ tarea.name }}</label>
+        <span
+          class="delete"
+          (click)="onDelete(i)">
+        X
+        </span>
       </li>
     </ul>
   </section>
