@@ -1,1 +1,5 @@
-<pokemon-card></pokemon-card>
+<pokemon-card
+  *ngFor="let pokemon of pokemons"
+  [pokemonName]="pokemon.name"
+  [pokemonImage]="pokemon.img">
+</pokemon-card>
