@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+
+$bg-body: #ffe6e6;
+$bg-header: #ffcccc;
+$bg-border: #ff9999;
+$color-icon: #ff4d4d;
+
+* {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  grid-template-columns: repeat( 12, 1fr );
+  grid-template-rows: auto;
+  grid-template-areas:
+  "header header header header header header header header header header header header"
+  ". main main main main main main main main main main ."
+  "footer footer footer footer footer footer footer footer footer footer footer footer";
+  background-color: $bg-body;
+}
+
+app-root {
+  grid-area: main;
+  padding: 40px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}

@@ -1,5 +1,8 @@
 <pokemon-card
   *ngFor="let pokemon of pokemons"
   [pokemonName]="pokemon.name"
-  [pokemonImage]="pokemon.img">
+  [pokemonImage]="pokemon.img"
+  [ngStyle]="{
+    'background-color': pokemon.bgColor
+  }">
 </pokemon-card>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { dataPokemons, getPokemonImageUri } from '../utils/utils';
+import { dataPokemons, getPokemonImageUri, pokemonColorMap } from '../utils/utils';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,9 @@ export class AppComponent {
   constructor() {
     this.pokemons = dataPokemons.results;
     this.pokemons.forEach( ( pokemon: any,index: number) => {
-      pokemon.img = getPokemonImageUri(index + 1)
+      const pokemonId = index + 1;
+      pokemon.img = getPokemonImageUri(pokemonId);
+      pokemon.bgColor = pokemonColorMap[pokemonId];
     });
     console.log(this.pokemons);
   }

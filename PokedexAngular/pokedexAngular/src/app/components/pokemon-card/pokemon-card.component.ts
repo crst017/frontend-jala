@@ -11,7 +11,6 @@ export class PokemonCardComponent implements OnInit {
   @Input() pokemonImage: string = 'Pokemon Image'
 
   constructor() {
-    console.log(this.pokemonImage);
   }
 
   ngOnInit(): void {
