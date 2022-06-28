@@ -1,0 +1,23 @@
+<div class="pokedex">
+
+  <div class="search-pokemon">
+    <span>What's your favorite pokémon?</span>
+    <input placeholder="Type here" [(ngModel)]="inputFilter" (input)="searchPokemon()"/>
+  </div>
+
+  <div class="pokemon-card-container">
+    <pokemon-card
+    *ngFor="let pokemon of filteredPokemons"
+    [pokemon]="pokemon">
+    </pokemon-card>
+  </div>
+
+  <div
+    class="not-found"
+    *ngIf="filteredPokemons.length === 0">
+    <img  src="../../../assets/pokemonNotFound.jpg" alt="pokemon-not-found">
+    <span>Who's that Pokémon ?</span>
+    <span>Sorry, we couldn't find that Pokémon</span>
+  </div>
+
+</div>

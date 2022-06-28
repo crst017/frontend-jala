@@ -1,0 +1,8 @@
+<div class="pokemon-card"
+  [ngStyle]="{
+    'background-color': backgroundColor
+  }">
+  <img [src]="pokemon.img" alt="pokemonImage">
+  <span>{{ pokemon.name }}</span>
+  <span class="pokemon-number"># {{ pokemon.id }}</span>
+</div>
