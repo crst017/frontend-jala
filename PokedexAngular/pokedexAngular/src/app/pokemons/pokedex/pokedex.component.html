@@ -2,7 +2,7 @@
 
   <div class="search-pokemon">
     <span>What's your favorite pokémon?</span>
-    <input placeholder="Type here" [(ngModel)]="inputFilter" (input)="searchPokemon()"/>
+    <input placeholder="Type here" [(ngModel)]="inputFilter" (ngModelChange)="searchPokemon($event)"/>
   </div>
 
   <div class="pokemon-card-container">

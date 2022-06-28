@@ -1,1 +1,21 @@
+$bg-header: #ffcccc;
+$bg-border: #ff9999;
 
+header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  grid-area: header;
+  padding: 20px 9%;
+  font-size: 40px;
+  background-color: $bg-header;
+  border-bottom: 3px solid $bg-border;
+
+  .logo {
+      width: auto;
+      height: 60px;
+  }
+}

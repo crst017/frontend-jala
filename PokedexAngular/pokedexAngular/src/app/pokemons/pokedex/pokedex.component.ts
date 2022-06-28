@@ -43,11 +43,11 @@ export class PokedexComponent implements OnInit {
     });
   }
 
-  searchPokemon() {
+  searchPokemon(value: string) {
 
     const pokemonCoincidences = this.pokemons.filter( pokemon => {
       const pokemonName = pokemon.name.toLowerCase();
-      const filter = this.inputFilter.toLowerCase();
+      const filter = value.toLowerCase();
       return pokemonName.includes(filter);
     });
 
