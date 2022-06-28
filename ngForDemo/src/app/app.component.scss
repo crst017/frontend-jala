@@ -1,0 +1,33 @@
+* {
+  font-family: sans-serif;
+}
+
+ul {
+  width: 300px;
+  margin: 0 auto;
+}
+
+li {
+  list-style: none;
+  height: 56px;
+  margin: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.even {
+  border: 3px solid red;
+}
+
+.odd {
+  border: 3px solid blue;
+}
+
+.first {
+  background-color: pink;
+}
+
+.last {
+  background-color: aqua;
+}
