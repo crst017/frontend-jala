@@ -13,7 +13,7 @@ export class PokedexComponent implements OnInit {
 
   pokemons: Pokemon[] = [];
   filteredPokemons: Pokemon[] = [];
-  limit: number = 25;
+  limit: number = 50;
   offset: number = 0;
   inputFilter: string = ''
 
@@ -28,8 +28,7 @@ export class PokedexComponent implements OnInit {
         (data: {results: Pokemon[]}) => {
 
             this.setPokemonProperties( data.results );
-            this.pokemons = [...this.pokemons, ...data.results]
-            this.offset += this.limit;
+            this.pokemons = [ ...this.pokemons, ...data.results]
             this.filteredPokemons = this.pokemons;
         }
       );
@@ -37,7 +36,7 @@ export class PokedexComponent implements OnInit {
 
   setPokemonProperties( pokemonList: Pokemon[] ): void {
     pokemonList.forEach( (pokemon, index) => {
-      const pokemonIndex = this.offset + index + 1;
+      const pokemonIndex = Number(this.offset) + index + 1;
       pokemon.id = pokemonIndex;
       pokemon.img = this.pokemonService.getPokemonImageUri( pokemonIndex );
     });
@@ -55,14 +54,12 @@ export class PokedexComponent implements OnInit {
   }
 
   paginate() {
-
     this.pokemonService.getPokemonList(this.offset, this.limit)
     .subscribe(
       (data: {results: Pokemon[]}) => {
 
           this.setPokemonProperties( data.results );
-          this.pokemons = [...this.pokemons, ...data.results]
-          this.offset += this.limit;
+          this.pokemons = [ ...this.pokemons, ...data.results]
           this.filteredPokemons = data.results;
       }
     );
