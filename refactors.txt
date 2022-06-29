@@ -1,12 +1,3 @@
-* Refactorizar el pokedex
-	- Enviar al hijo un objeto con toda la 
-	información necesaria:
-		* Nombre
-		* Imagen
-		* Color
-		* Numero de pokemón
-
-* Crear componente para buscar pokemon
-	- Crear componente busqueda dentro de pokemons
-	- Usarlo dentro del componente pokedex
+* Images 
+* Map de los pokemones en el fetch
 	

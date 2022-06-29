@@ -3,6 +3,19 @@ $bg-header: #ffcccc;
 $bg-border: #ff9999;
 $color-icon: #ff4d4d;
 
+button {
+  height: 40px;
+  border: 2px solid $color-icon;
+  border-radius: 10px;
+  width: 80px;
+  background-color: inherit;
+
+  &:hover {
+    background-color: $bg-border;
+    cursor: pointer;
+  }
+}
+
 .search-pokemon {
   display: flex;
   align-items: center;
@@ -33,6 +46,11 @@ $color-icon: #ff4d4d;
     align-items: center;
   }
 
+  .filter-options {
+    display: flex;
+    gap: 15px;
+  }
+
   .pagination {
     display: flex;
     flex-wrap: wrap;
@@ -42,19 +60,6 @@ $color-icon: #ff4d4d;
     input {
       width: 70px;
       padding: 10px;
-    }
-
-    button {
-      height: 40px;
-      border: 2px solid $color-icon;
-      border-radius: 10px;
-      width: 80px;
-      background-color: inherit;
-
-      &:hover {
-        background-color: $bg-border;
-        cursor: pointer;
-      }
     }
   }
 }

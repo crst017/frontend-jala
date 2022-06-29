@@ -1,7 +1,5 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/utils/types';
-import { dataPokemons, getPokemonImageUri, pokemonColorMap } from '../../../utils/utils';
 import { PokemonService } from '../pokemon.service';
 
 @Component({
@@ -12,7 +10,7 @@ import { PokemonService } from '../pokemon.service';
 export class PokedexComponent implements OnInit {
 
   pokemons: Pokemon[] = [];
-  filteredPokemons: Pokemon[] = [];
+  filteredPokemons: Pokemon[] = this.pokemons;
   limit: number = 50;
   offset: number = 0;
   inputFilter: string = ''
@@ -25,21 +23,21 @@ export class PokedexComponent implements OnInit {
 
     this.pokemonService.getPokemonList(this.offset, this.limit)
       .subscribe(
-        (data: {results: Pokemon[]}) => {
-
-            this.setPokemonProperties( data.results );
-            this.pokemons = [ ...this.pokemons, ...data.results]
-            this.filteredPokemons = this.pokemons;
-        }
-      );
+        (data: {results: Pokemon[]}) => this.setCurrentPokemons(data.results));
   }
 
-  setPokemonProperties( pokemonList: Pokemon[] ): void {
-    pokemonList.forEach( (pokemon, index) => {
+  setPokemonProperties( pokemonList: Pokemon[] ): Pokemon[] {
+    return pokemonList.map( (pokemon, index) => {
       const pokemonIndex = Number(this.offset) + index + 1;
       pokemon.id = pokemonIndex;
       pokemon.img = this.pokemonService.getPokemonImageUri( pokemonIndex );
+      return pokemon
     });
+  }
+
+  setCurrentPokemons( results: Pokemon[]) {
+    this.pokemons = this.setPokemonProperties(results);
+    this.filteredPokemons = this.pokemons
   }
 
   searchPokemon(value: string) {
@@ -56,12 +54,14 @@ export class PokedexComponent implements OnInit {
   paginate() {
     this.pokemonService.getPokemonList(this.offset, this.limit)
     .subscribe(
-      (data: {results: Pokemon[]}) => {
-
-          this.setPokemonProperties( data.results );
-          this.pokemons = [ ...this.pokemons, ...data.results]
-          this.filteredPokemons = data.results;
-      }
-    );
+      (data: {results: Pokemon[]}) => this.setCurrentPokemons( data.results ));
   }
+
+  orderAlphabetically() {
+    console.log(this.filteredPokemons);
+    const ordered = this.filteredPokemons.sort();
+    console.log(this.filteredPokemons);
+    console.log(ordered)
+  }
+
 }

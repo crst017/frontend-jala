@@ -7,10 +7,14 @@
       <input id="search-pokemon"placeholder="Type here" [(ngModel)]="inputFilter" (ngModelChange)="searchPokemon($event)"/>
     </div>
 
-    <form class="pagination" (submit)="paginate()">
-      <input id="offset" placeholder="Offset" type="text" [(ngModel)]="offset" name="offset">
-      <button>Search</button>
-    </form>
+    <div class="filter-options">
+      <form class="pagination" (submit)="paginate()">
+        <input id="offset" placeholder="Offset" type="text" [(ngModel)]="offset" name="offset">
+        <button>Search</button>
+      </form>
+
+      <button (click)="orderAlphabetically()" >A - Z</button>
+    </div>
 
   </div>
 
