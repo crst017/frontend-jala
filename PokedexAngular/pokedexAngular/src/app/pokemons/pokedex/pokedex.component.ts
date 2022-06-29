@@ -58,10 +58,7 @@ export class PokedexComponent implements OnInit {
   }
 
   orderAlphabetically() {
-    console.log(this.filteredPokemons);
-    const ordered = this.filteredPokemons.sort();
-    console.log(this.filteredPokemons);
-    console.log(ordered)
+    this.filteredPokemons.sort( (a,b) => a.name.localeCompare(b.name));
   }
 
 }
