@@ -1,9 +1,20 @@
 <div class="pokedex">
 
   <div class="search-pokemon">
-    <span>What's your favorite pokémon?</span>
-    <input placeholder="Type here" [(ngModel)]="inputFilter" (ngModelChange)="searchPokemon($event)"/>
+
+    <div class="search">
+      <label for="search-pokemon">What's your favorite pokémon?</label>
+      <input id="search-pokemon"placeholder="Type here" [(ngModel)]="inputFilter" (ngModelChange)="searchPokemon($event)"/>
+    </div>
+
+    <div class="pagination">
+      <input id="offset" placeholder="Offset" type="text" [(ngModel)]="offset">
+      <input id="limit" placeholder="Limit" type="text" [(ngModel)]="limit">
+      <button (click)="paginate()" >Search</button>
+    </div>
+
   </div>
+
 
   <div class="pokemon-card-container">
     <pokemon-card

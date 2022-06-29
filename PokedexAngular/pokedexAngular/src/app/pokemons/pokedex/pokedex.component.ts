@@ -53,4 +53,18 @@ export class PokedexComponent implements OnInit {
 
     this.filteredPokemons = pokemonCoincidences.length != 0 ? pokemonCoincidences : [];
   }
+
+  paginate() {
+
+    this.pokemonService.getPokemonList(this.offset, this.limit)
+    .subscribe(
+      (data: {results: Pokemon[]}) => {
+
+          this.setPokemonProperties( data.results );
+          this.pokemons = [...this.pokemons, ...data.results]
+          this.offset += this.limit;
+          this.filteredPokemons = data.results;
+      }
+    );
+  }
 }

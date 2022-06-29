@@ -1,0 +1,27 @@
+$bg-body: #ffe6e6;
+$bg-border: #ff9999;
+$color-icon: #ff4d4d;
+
+footer {
+
+  grid-area: footer;
+  padding: 30px 9%;
+  border-top: 3px solid $bg-border;
+  background-color: $bg-body;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  .icons-container {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 25px;
+
+      i {
+          color: $color-icon;
+          font-size: 28px;
+      }
+  }
+}
