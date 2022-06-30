@@ -65,4 +65,5 @@ export class PokedexComponent implements OnInit {
   resetInput() {
     this.inputFilter = '';
   }
+
 }

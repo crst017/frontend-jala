@@ -6,11 +6,13 @@ import { HttpClientModule } from "@angular/common/http";
 import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 import { PokedexComponent } from './pokedex/pokedex.component';
 import { PokemonRoutingModule } from './pokemon-routing.module';
+import { PokemonProfileComponent } from './pokemon-profile/pokemon-profile.component';
 
 @NgModule({
   declarations: [
     PokedexComponent,
-    PokemonCardComponent
+    PokemonCardComponent,
+    PokemonProfileComponent
   ],
   imports: [
     BrowserModule,
