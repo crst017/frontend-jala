@@ -3,8 +3,9 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from "@angular/common/http";
 
-import { PokedexComponent } from './pokedex/pokedex.component';
 import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
+import { PokedexComponent } from './pokedex/pokedex.component';
+import { PokemonRoutingModule } from './pokemon-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
     HttpClientModule
   ],
   exports: [
-    PokedexComponent
+    PokedexComponent,
+    PokemonRoutingModule
   ],
   providers: [],
 })

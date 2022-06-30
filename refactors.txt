@@ -1,3 +1,2 @@
-* Images 
-* Map de los pokemones en el fetch
+
 	

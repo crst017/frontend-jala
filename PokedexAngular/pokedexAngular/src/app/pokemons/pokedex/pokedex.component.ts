@@ -55,10 +55,14 @@ export class PokedexComponent implements OnInit {
     this.pokemonService.getPokemonList(this.offset, this.limit)
     .subscribe(
       (data: {results: Pokemon[]}) => this.setCurrentPokemons( data.results ));
+    this.resetInput();
   }
 
   orderAlphabetically() {
     this.filteredPokemons.sort( (a,b) => a.name.localeCompare(b.name));
   }
 
+  resetInput() {
+    this.inputFilter = '';
+  }
 }
