@@ -22,4 +22,8 @@ export class PokemonService {
     const imageId = ('00' + id).slice(-3); // para 1 => 001
     return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${imageId}.png`;
   }
+
+  getPokemon( id: string ) {
+    return this.http.get(`${this.api}/pokemon/${id}`) as Observable<{results: any}>;
+  }
 }
