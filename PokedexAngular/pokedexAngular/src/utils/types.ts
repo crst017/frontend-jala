@@ -2,5 +2,12 @@ export type Pokemon = {
   id: number,
   name: string,
   img: string,
-  url: string
+  description ?: string,
+  types ?: Type[]
 }
+
+export type Type = {
+  name: string
+}
+
+

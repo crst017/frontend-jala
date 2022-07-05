@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { PokemonService } from '../pokemon.service';
 import { ActivatedRoute } from '@angular/router';
+import { Pokemon } from 'src/utils/types';
 
 @Component({
   selector: 'app-pokemon-profile',
@@ -10,8 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PokemonProfileComponent implements OnInit {
 
-  id: string = '1';
-  fields ?: any;
+  id: number = 1;
+  pokemonInfo !: Pokemon;
 
   constructor(
     private location: Location,
@@ -20,10 +21,16 @@ export class PokemonProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id') || '1';
+    const id = this.route.snapshot.paramMap.get('id') || '1';
+    this.id = parseInt(id);
+
     this.pokemonService.getPokemon(this.id)
-      .subscribe( pokemonDetail => {
-        this.fields = pokemonDetail});
+      .subscribe( ( data: { results: Pokemon } ) => {
+
+        // this.pokemonInfo.id = this.id;
+        // this.pokemonInfo.name = data.results.name;
+        console.log(data)
+      });
   }
 
   goBack() {

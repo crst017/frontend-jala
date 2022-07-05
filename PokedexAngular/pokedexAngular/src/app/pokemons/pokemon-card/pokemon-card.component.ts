@@ -10,7 +10,7 @@ import { pokemonColorMap } from 'src/utils/utils';
 })
 export class PokemonCardComponent implements OnInit {
 
-  @Input() pokemon !: Pokemon ;
+  @Input() pokemon !: Pokemon;
   backgroundColor !: string;
 
   constructor(
