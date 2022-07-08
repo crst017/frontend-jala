@@ -1,0 +1,77 @@
+$bg-border: #ff9999;
+$color-icon: #ff4d4d;
+
+img {
+  border: 3px solid $color-icon;
+  border-radius: 5px;
+  background-color: $bg-border;
+}
+
+button {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+
+.pokemon-profile {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  height: auto;
+  border: 1px solid $bg-border;
+}
+
+.images-container {
+  max-width: 250px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .main-image {
+    width: 100%;
+  }
+
+  .sprite {
+    width: 48%;
+    margin-top: 10px;
+  }
+}
+
+.pokemon-info {
+
+  width: 40%;
+  h2 {
+    text-transform: capitalize;
+  }
+
+  .pokemon-type {
+    text-transform: capitalize;
+  }
+}
+
+.pokemon-stats {
+  width: 25%;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  .individual-stat {
+    text-transform: capitalize;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+
+    progress {
+      height: 20px;
+      width: 100%;
+      -webkit-appearance: none;
+    }
+
+    ::-webkit-progress-bar {
+      background-color: gainsboro;
+    }
+
+    ::-webkit-progress-value {
+      background-color: pink;
+    }
+  }
+}

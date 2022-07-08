@@ -3,19 +3,6 @@ $bg-header: #ffcccc;
 $bg-border: #ff9999;
 $color-icon: #ff4d4d;
 
-button {
-  height: 40px;
-  border: 2px solid $color-icon;
-  border-radius: 10px;
-  width: 80px;
-  background-color: inherit;
-
-  &:hover {
-    background-color: $bg-border;
-    cursor: pointer;
-  }
-}
-
 .search-pokemon {
   display: flex;
   align-items: center;
@@ -28,7 +15,6 @@ button {
     width: 180px;
     background-color: inherit;
     border: none;
-    border-radius: 10px;
     border-top: none;
     border-bottom: 3px solid $color-icon;
     outline: none;
