@@ -7,6 +7,7 @@ import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 import { PokedexComponent } from './pokedex/pokedex.component';
 import { PokemonRoutingModule } from './pokemon-routing.module';
 import { PokemonProfileComponent } from './pokemon-profile/pokemon-profile.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -15,14 +16,11 @@ import { PokemonProfileComponent } from './pokemon-profile/pokemon-profile.compo
     PokemonProfileComponent
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     FormsModule,
-    HttpClientModule
-  ],
-  exports: [
-    PokedexComponent,
     PokemonRoutingModule
   ],
+  exports: [],
   providers: [],
 })
 

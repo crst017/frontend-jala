@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { PokemonModule } from './pokemons/pokemon.module';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { FooterComponent } from './core/footer/footer.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PokemonModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

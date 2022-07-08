@@ -4,15 +4,16 @@ import { Observable } from "rxjs";
 import { Pokemon } from "src/utils/types";
 import { PokemonService } from "../pokemon.service";
 
-// @Injectable({
-//   providedIn: "root"
-// })
+@Injectable({
+  providedIn: "root"
+})
 
-// export class PokemonResolver implements Resolve<any> {
+export class PokemonResolver implements Resolve<any> {
 
-//   constructor( private pokemonService: PokemonService) {}
+  constructor( private pokemonService: PokemonService) {}
 
-//   resolve(route: ActivatedRouteSnapshot): any | Observable<any> | Promise<any> {
-//     return this.pokemonService.getPokemon(route.paramMap.get('id') || '1')
-//   }
-// }
+  resolve(route: ActivatedRouteSnapshot): any | Observable<any> | Promise<any> {
+    const id = parseInt(route.paramMap.get('id') || '1')
+    return this.pokemonService.getPokemon(id)
+  }
+}
