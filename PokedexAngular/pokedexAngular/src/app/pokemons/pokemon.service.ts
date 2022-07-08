@@ -24,7 +24,7 @@ export class PokemonService {
   }
 
   getPokemon( id: number ) {
-    return lastValueFrom(this.http.get(`${this.api}/pokemon/${id}`));
+    return this.http.get(`${this.api}/pokemon/${id}`);
   }
 
   getPokemonSpecie( id: number ) {
