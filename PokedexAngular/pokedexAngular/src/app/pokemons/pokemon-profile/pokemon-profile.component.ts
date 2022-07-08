@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Type } from '@angular/core';
 import { Location } from '@angular/common';
 import { PokemonService } from '../pokemon.service';
 import { ActivatedRoute } from '@angular/router';
-import { Pokemon } from 'src/utils/types';
+import { Pokemon, PokemonType } from 'src/utils/types';
 
 @Component({
   selector: 'app-pokemon-profile',
@@ -12,7 +12,7 @@ import { Pokemon } from 'src/utils/types';
 export class PokemonProfileComponent implements OnInit {
 
   id: number = 1;
-  pokemonInfo !: Pokemon;
+  pokemon !: Pokemon;
 
   constructor(
     private location: Location,
@@ -23,17 +23,35 @@ export class PokemonProfileComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id') || '1';
     this.id = parseInt(id);
-
-    this.pokemonService.getPokemon(this.id)
-      .subscribe( ( data: { results: Pokemon } ) => {
-
-        // this.pokemonInfo.id = this.id;
-        // this.pokemonInfo.name = data.results.name;
-        console.log(data)
-      });
+    this.setPokemonInfo();
   }
 
   goBack() {
     this.location.back();
+  }
+
+  async setPokemonInfo() {
+
+    const dataPokemon = await this.pokemonService.getPokemon(this.id) as any;
+    const dataSpecies = await this.pokemonService.getPokemonSpecie(this.id) as any;
+    const img = this.pokemonService.getPokemonImageUri(this.id);
+    const types = dataPokemon.types.map( (type : any) => type.type.name);
+    const stats = dataPokemon.stats.map( (stat : any) => {
+      return {
+        name: stat.stat.name,
+        base_stat: stat.base_stat
+      }
+    })
+
+    this.pokemon = {
+      id: this.id,
+      name: dataPokemon.name,
+      img: img,
+      description: dataSpecies.flavor_text_entries[0].flavor_text,
+      sprites: [ dataPokemon.sprites.front_default, dataPokemon.sprites.back_default],
+      types: types,
+      stats: stats
+    }
+    console.log(this.pokemon)
   }
 }

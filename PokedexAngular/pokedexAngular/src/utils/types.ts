@@ -3,11 +3,17 @@ export type Pokemon = {
   name: string,
   img: string,
   description ?: string,
-  types ?: Type[]
+  sprites ?: string[],
+  types ?: PokemonType[],
+  stats ?: Stats[],
 }
 
-export type Type = {
+export type PokemonType = {
   name: string
 }
 
+export type Stats = {
+  name: string,
+  base_stat: number
+}
 
