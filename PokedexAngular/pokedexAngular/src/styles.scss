@@ -14,22 +14,7 @@ $color-icon: #ff4d4d;
 }
 
 body {
-  height: 100vh;
-  display: grid;
-  grid-template-columns: repeat( 12, 1fr );
-  grid-template-rows: auto;
-  grid-template-areas:
-  "header header header header header header header header header header header header"
-  ". main main main main main main main main main main ."
-  "footer footer footer footer footer footer footer footer footer footer footer footer";
   background-color: $bg-body;
-}
-
-app-root {
-  grid-area: main;
-  padding: 40px 0px;
-  display: flex;
-  flex-wrap: wrap;
 }
 
 button {

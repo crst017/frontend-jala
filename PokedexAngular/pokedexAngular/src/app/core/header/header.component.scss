@@ -1,1 +1,27 @@
+$bg-body: #ffe6e6;
+$bg-header: #ffcccc;
+$bg-border: #ff9999;
+$color-icon: #ff4d4d;
+
+header {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 9%;
+  font-size: 40px;
+  background-color: $bg-header;
+  border-bottom: 3px solid $bg-border;
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .logo {
+    width: auto;
+    height: 60px;
+  }
+}
 
