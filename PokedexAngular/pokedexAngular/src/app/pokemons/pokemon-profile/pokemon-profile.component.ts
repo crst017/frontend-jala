@@ -21,19 +21,22 @@ export class PokemonProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    const data = this.route.snapshot.data['pokemonData'];
+
     const id = this.route.snapshot.paramMap.get('id') || '1';
     this.id = parseInt(id);
-    this.setPokemonInfo();
+    this.setPokemonInfo( data );
   }
 
   goBack() {
     this.location.back();
   }
 
-  async setPokemonInfo() {
+  async setPokemonInfo( data: any) {
 
-    const dataPokemon = await this.pokemonService.getPokemon(this.id) as any;
-    const dataSpecies = await this.pokemonService.getPokemonSpecie(this.id) as any;
+    const dataPokemon = data.pokemonData;
+    const dataSpecies = data.pokemonSpecie;
     const img = this.pokemonService.getPokemonImageUri(this.id);
     const types = dataPokemon.types.map( (type : any) => type.type.name);
     const stats = dataPokemon.stats.map( (stat : any) => {
@@ -52,6 +55,6 @@ export class PokemonProfileComponent implements OnInit {
       types: types,
       stats: stats
     }
-    console.log(this.pokemon)
   }
+
 }

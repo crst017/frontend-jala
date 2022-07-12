@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Pokemon } from 'src/utils/types';
 import { PokemonService } from '../pokemon.service';
 
@@ -16,14 +17,15 @@ export class PokedexComponent implements OnInit {
   inputFilter: string = ''
 
   constructor(
-    private pokemonService: PokemonService
+    private pokemonService: PokemonService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
 
-    this.pokemonService.getPokemonList(this.offset, this.limit)
-      .subscribe(
-        (data: {results: Pokemon[]}) => this.setCurrentPokemons(data.results));
+    const pokemons = this.route.snapshot.data['pokemons'].results;
+    this.setCurrentPokemons(pokemons)
+
   }
 
   setPokemonProperties( pokemonList: Pokemon[] ): Pokemon[] {

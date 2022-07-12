@@ -14,7 +14,7 @@ export class PokemonService {
 
   private api = 'https://pokeapi.co/api/v2';
 
-  getPokemonList( offset: number = 0, limit: number = 25) {
+  getPokemonList( offset: number = 0, limit: number = 50) {
     return this.http.get(`${this.api}/pokemon?limit=${limit}&offset=${offset}`) as Observable<{results: Pokemon[]}>;
   }
 
@@ -24,7 +24,7 @@ export class PokemonService {
   }
 
   getPokemon( id: number ) {
-    return this.http.get(`${this.api}/pokemon/${id}`);
+    return lastValueFrom(this.http.get(`${this.api}/pokemon/${id}`));
   }
 
   getPokemonSpecie( id: number ) {
