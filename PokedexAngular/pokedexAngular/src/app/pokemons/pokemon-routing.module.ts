@@ -4,6 +4,7 @@ import { PokedexComponent } from './pokedex/pokedex.component';
 import { PokemonProfileComponent } from './pokemon-profile/pokemon-profile.component';
 import { PokemonProfileResolver } from './pokemon-profile/pokemon-profile.resolver'
 import { PokedexResolver } from './pokedex/pokedex.resolver';
+import { AddPokemonComponent } from './add-pokemon/add-pokemon.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
     resolve: {
       pokemons: PokedexResolver
     }
+  },
+  {
+    path: 'add-pokemon',
+    component: AddPokemonComponent,
   },
   {
     path: ':id',

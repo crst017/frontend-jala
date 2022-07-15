@@ -30,7 +30,8 @@
         *ngFor="let type of pokemon.types"
         class="pokemon-type"> {{type}}
     </span>
+    <button (click)="goBack()">Evolution</button>
   </section>
 
-  <button (click)="goBack()">Go back</button>
+  <button class="go-back" (click)="goBack()">Go back</button>
 </div>

@@ -1,0 +1,17 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <h2>Basic Information</h2>
+  <div>
+    <!-- <mat-form-field appearance="fill"></mat-form-field> -->
+    <label for="first-name">First Name</label>
+    <input id="first-name" type="text" formControlName="pokemonName">
+    <!-- matInput -->
+  </div>
+  <div>
+    <!-- <mat-form-field appearance="fill"></mat-form-field> -->
+    <label for="description">Last Name</label>
+    <input id="description" type="text" formControlName="pokemonDescription">
+    <!-- matInput -->
+  </div>
+  <button type="submit">Submit</button>
+  <!-- mat-raised-button color="accent" -->
+</form>
