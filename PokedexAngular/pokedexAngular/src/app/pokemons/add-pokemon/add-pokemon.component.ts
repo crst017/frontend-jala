@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-pokemon',
@@ -8,27 +9,33 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class AddPokemonComponent implements OnInit {
 
-  profileForm = new FormGroup({
-    pokemonName: new FormControl(''),
-    pokemonDescription: new FormControl('')
+  submitted = false;
+  pokemonForm: FormGroup = new FormGroup({
+    pokemonName: new FormControl('',Validators.required),
+    pokemonDescription: new FormControl('',[Validators.required,Validators.minLength(20)]),
+    pokemonWeight: new FormControl('',Validators.required),
+    pokemonHeight: new FormControl('',Validators.required),
+    pokemonType: new FormControl('',Validators.required),
+    gameVersion: new FormControl('',Validators.required)
   });
 
-  constructor(
-    private fb: FormBuilder
-  ) { }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-  }
 
-  get types() {
-    return this.profileForm.get('types') as FormArray;
-  }
-
-  addType() {
-    return this.types.push(this.fb.control(''));
   }
 
   onSubmit() {
-    console.warn(this.profileForm.value)
+    this.submitted = true;
+    if(this.pokemonForm.valid) {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Your pokémon has been saved',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      console.log(this.pokemonForm.value);
+    };
   }
 }

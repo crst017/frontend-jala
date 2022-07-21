@@ -1,17 +1,157 @@
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-  <h2>Basic Information</h2>
-  <div>
-    <!-- <mat-form-field appearance="fill"></mat-form-field> -->
-    <label for="first-name">First Name</label>
-    <input id="first-name" type="text" formControlName="pokemonName">
-    <!-- matInput -->
+<div class="row g-5 py-5" >
+
+  <div class="col-md-7 order-md-last">
+
+      <h4 class="mb-3">New Pokémon</h4>
+      <form [formGroup]="pokemonForm" (ngSubmit)="onSubmit()">
+      <div class="row g-3">
+
+          <div class="col-12">
+          <label for="name" class="form-label">Pokémon name</label>
+          <input
+              type="text"
+              class="form-control"
+              id="name"
+              placeholder="Pokémon name"
+              value=""
+              formControlName="pokemonName"
+              required
+          />
+          <div *ngIf="submitted && pokemonForm.controls['pokemonName'].errors" class="error-message">
+              Valid name is required.
+          </div>
+          </div>
+
+          <div class="col-12">
+            <label for="description" class="form-label">Pokémon description</label>
+            <input
+                type="text"
+                class="form-control"
+                id="description"
+                placeholder="Pokémon name"
+                value=""
+                formControlName="pokemonDescription"
+                required
+            />
+            <div *ngIf="submitted && pokemonForm.controls['pokemonDescription'].errors?.['required']" class="error-message">
+                Description is required
+            </div>
+            <div *ngIf="submitted && pokemonForm.controls['pokemonDescription'].errors?.['minlength']" class="error-message">
+                Description must be at least 20 characters long
+            </div>
+            </div>
+
+          <div class="col-sm-6">
+          <label for="weight" class="form-label">Weight</label>
+          <input
+              type="text"
+              class="form-control"
+              id="weight"
+              placeholder="Pokémon weight"
+              formControlName="pokemonWeight"
+              value=""
+              required
+          />
+          <div *ngIf="submitted && pokemonForm.controls['pokemonWeight'].errors" class="error-message">
+              Valid weight is required.
+          </div>
+          </div>
+
+          <div class="col-sm-6">
+          <label for="height" class="form-label">Height</label>
+          <input
+              type="text"
+              class="form-control"
+              id="height"
+              placeholder="Pokémon height"
+              formControlName="pokemonHeight"
+              value=""
+              required
+          />
+          <div *ngIf="submitted && pokemonForm.controls['pokemonHeight'].errors" class="error-message">
+              Valid height is required.
+          </div>
+          </div>
+
+          <div class="col-md-6">
+          <label for="game-version" class="form-label">Game version</label>
+
+          <select class="form-select" id="game-version" formControlName="gameVersion" required>
+            <option value="">Choose...</option>
+            <option>FireRed</option>
+            <option>LeafGreen</option>
+            <option>Emerald</option>
+            <option>Ruby</option>
+            <option>Sapphire</option>
+          </select>
+          <div *ngIf="submitted && pokemonForm.controls['gameVersion'].errors" class="error-message">
+              Game version is required
+          </div>
+          </div>
+
+
+          <div class="col-md-6">
+          <label for="pokemon-type" class="form-label">Type</label>
+
+          <select class="form-select" id="pokemon-type" formControlName="pokemonType" required>
+              <option value="">Choose...</option>
+              <option>Fire</option>
+              <option>Water</option>
+              <option>Electric</option>
+              <option>Bug</option>
+              <option>Flying</option>
+          </select>
+
+          <div *ngIf="submitted && pokemonForm.controls['pokemonType'].errors" class="error-message">
+              Pokemon type is required
+          </div>
+          </div>
+      </div>
+      <hr class="my-4" />
+
+      <div class="text-center">
+          <button class="w-50 btn btn-primary btn-lg" type="submit">
+              Save Pokémon
+          </button>
+      </div>
+
+      </form>
   </div>
-  <div>
-    <!-- <mat-form-field appearance="fill"></mat-form-field> -->
-    <label for="description">Last Name</label>
-    <input id="description" type="text" formControlName="pokemonDescription">
-    <!-- matInput -->
+
+  <div class="col-md-5 ">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+      <span class="text">Attributes info</span>
+      </h4>
+
+
+      <div class="border rounded p-3">
+
+          <div>
+              <span class="badge bg-primary my-2">Name</span>
+              <p class="mb-2 attr-description">What is the name of the Pokémon ?</p>
+          </div>
+          <div>
+              <span class="badge bg-primary my-2 ">Weight</span>
+              <p class="mb-2 attr-description">How much does it weigh ?</p>
+          </div>
+          <div>
+              <span class="badge bg-primary my-2">Height</span>
+              <p class="mb-2 attr-description">How tall is it ? </p>
+          </div>
+          <div>
+              <span class="badge bg-primary my-2">Game version</span>
+              <p class="mb-2 attr-description">In which versions of the game is the Pokémon in?
+                  Can be more than one
+              </p>
+          </div>
+          <div>
+              <span class="badge bg-primary my-2">Type</span>
+              <p class="mb-2 attr-description">What kind of Pokémon is it ?</p>
+          </div>
+
+
+      </div>
   </div>
-  <button type="submit">Submit</button>
-  <!-- mat-raised-button color="accent" -->
-</form>
+
+
+</div>

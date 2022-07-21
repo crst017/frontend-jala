@@ -3,6 +3,10 @@ $bg-header: #ffcccc;
 $bg-border: #ff9999;
 $color-icon: #ff4d4d;
 
+* {
+  font-family: 'Nunito' , sans-serif;
+}
+
 :host {
   display: grid;
   grid-template-columns: repeat( 12, 1fr );
