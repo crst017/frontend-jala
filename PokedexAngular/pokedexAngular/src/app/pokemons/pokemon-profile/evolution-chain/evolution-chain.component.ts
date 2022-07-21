@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { pokemonColorMap } from 'src/utils/utils';
 import { PokemonService } from '../../pokemon.service';
@@ -12,6 +12,7 @@ export class EvolutionChainComponent implements OnInit {
 
 
   evolutionChain : any[] = [];
+  @Input() bgColors !: any;
 
   constructor(
     private pokemonService: PokemonService,
@@ -19,12 +20,14 @@ export class EvolutionChainComponent implements OnInit {
     private router: Router
   ) { }
 
+
+
   ngOnInit(): void {
 
     const data = this.route.snapshot.data['pokemonData'].pokemonSpecie;
     const chainUrl = data.evolution_chain.url;
     this.getEvolutionChain(chainUrl);
-    console.log(this.evolutionChain)
+    console.log(this.bgColors)
   }
 
   async getEvolutionChain( url: string) {

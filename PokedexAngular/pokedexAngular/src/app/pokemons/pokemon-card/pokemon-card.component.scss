@@ -9,6 +9,11 @@
   min-width: 160px;
   max-width: 190px;
   cursor: pointer;
+  border: 2px solid black;
+
+  &:hover {
+    animation: scale 0.5s infinite;
+  }
 
   span {
     font-size: 16px;
@@ -26,6 +31,15 @@
 
   img {
     width: 100%;
+  }
+}
+
+@keyframes scale {
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 

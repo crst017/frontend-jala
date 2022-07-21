@@ -4,7 +4,7 @@ export type Pokemon = {
   img: string,
   description ?: string,
   sprites ?: string[],
-  types ?: PokemonType[],
+  types ?: string[],
   stats ?: Stats[],
   evolutionChainId ?: string
 }

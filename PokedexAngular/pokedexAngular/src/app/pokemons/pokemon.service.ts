@@ -35,4 +35,10 @@ export class PokemonService {
     return lastValueFrom(this.http.get(evolutionChainUrl));
   }
 
+  async getPokemonFirstType( id: number ) {
+    const result = await lastValueFrom(this.http.get(`${this.api}/pokemon/${id}`)) as any;
+    const types = result.types[0] || [];
+    return types.type.name
+  }
+
 }

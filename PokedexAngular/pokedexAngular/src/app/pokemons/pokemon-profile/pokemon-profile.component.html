@@ -6,7 +6,8 @@
     <section class="images-container">
       <img
         class="main-image"
-        [src]="pokemon.img" alt="pokemon-image">
+        [src]="pokemon.img" alt="pokemon-image"
+        >
       <img
         class="sprite"
         *ngFor="let sprite of pokemon.sprites"
@@ -17,8 +18,11 @@
       <div
         class="individual-stat"
         *ngFor="let stat of pokemon.stats">
-        <span>{{stat.name}}</span>
-        <progress max="100" value="{{stat.base_stat}}"></progress>
+        <div class="stat-description">
+          <span>{{stat.name}}</span>
+          <span>{{stat.base_stat}}</span>
+        </div>
+        <progress max="200" value="{{stat.base_stat}}"></progress>
       </div>
     </section>
 
@@ -31,13 +35,18 @@
       <span class="pokemon-id"># {{pokemon.id}}</span>
       <span
           *ngFor="let type of pokemon.types"
-          class="pokemon-type"> {{type}}
+          class="pokemon-type"
+          [ngStyle]="{
+            'background-color': backgroundTypeColorsMedium[type],
+            'border-color': backgroundTypeColors[type]
+          }"> {{type}}
       </span>
     </section>
 
     <button class="go-back" (click)="goBack()">Go back</button>
   </div>
 
-  <evolution-chain></evolution-chain>
+  <evolution-chain>
+  </evolution-chain>
 
 </div>

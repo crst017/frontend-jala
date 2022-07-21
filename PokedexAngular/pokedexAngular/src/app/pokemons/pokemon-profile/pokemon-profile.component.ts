@@ -1,8 +1,10 @@
-import { Component, OnInit, Type } from '@angular/core';
+import { Component, HostBinding, OnInit, Type } from '@angular/core';
 import { Location } from '@angular/common';
 import { PokemonService } from '../pokemon.service';
 import { ActivatedRoute } from '@angular/router';
 import { Pokemon, PokemonType } from 'src/utils/types';
+import { pokemonTypeColorMap, pokemonTypeColorMapMedium, pokemonTypeColorMapSoft } from 'src/utils/utils';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-pokemon-profile',
@@ -13,12 +15,24 @@ export class PokemonProfileComponent implements OnInit {
 
   id: number = 1;
   pokemon !: Pokemon;
+  backgroundTypeColors = pokemonTypeColorMap;
+  backgroundTypeColorsMedium = pokemonTypeColorMapMedium;
+  backgroundTypeColorsSoft = pokemonTypeColorMapSoft;
+  colorValue = 'pasando valor';
 
   constructor(
     private location: Location,
     private pokemonService: PokemonService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+
   ) { }
+
+  @HostBinding("style.--bg-strong")
+  bgStrong !: string
+  @HostBinding("style.--bg-medium")
+  bgMedium !: string
+  @HostBinding("style.--bg-soft")
+  bgSoft !: string
 
   ngOnInit(): void {
 
@@ -28,10 +42,6 @@ export class PokemonProfileComponent implements OnInit {
       this.id = parseInt(id);
       this.setPokemonInfo(data);
     })
-    // const data = this.route.snapshot.data['pokemonData'];
-    // const id = this.route.snapshot.paramMap.get('id') || '1';
-    // this.id = parseInt(id);
-    // this.setPokemonInfo( data );
   }
 
   goBack() {
@@ -43,7 +53,7 @@ export class PokemonProfileComponent implements OnInit {
     const dataPokemon = data.pokemonData;
     const dataSpecies = data.pokemonSpecie;
     const img = this.pokemonService.getPokemonImageUri(this.id);
-    const types = dataPokemon.types.map( (type : any) => type.type.name);
+    const types = dataPokemon.types.map( (type : any) => type.type.name) || ['normal'];
     const stats = dataPokemon.stats.map( (stat : any) => {
       return {
         name: stat.stat.name,
@@ -60,6 +70,9 @@ export class PokemonProfileComponent implements OnInit {
       types: types,
       stats: stats
     }
+    this.bgStrong = this.backgroundTypeColors[types[0]];
+    this.bgMedium = this.backgroundTypeColorsMedium[types[0]];
+    this.bgSoft = this.backgroundTypeColorsSoft[types[0]];
   }
 
 }
