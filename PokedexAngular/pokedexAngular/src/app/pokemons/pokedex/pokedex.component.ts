@@ -15,6 +15,7 @@ export class PokedexComponent implements OnInit {
   limit: number = 50;
   offset: number = 0;
   inputFilter: string = ''
+  page: number = 0;
 
   constructor(
     private pokemonService: PokemonService,
@@ -53,19 +54,21 @@ export class PokedexComponent implements OnInit {
     this.filteredPokemons = pokemonCoincidences.length != 0 ? pokemonCoincidences : [];
   }
 
-  paginate() {
+  paginate(action: string) {
+
+    if ( action === 'more' ) this.page++
+    else this.page--
+
+    if(this.page < 0) this.page = 0
+    this.offset = this.limit * this.page;
+
     this.pokemonService.getPokemonList(this.offset, this.limit)
     .subscribe(
-      (data: {results: Pokemon[]}) => this.setCurrentPokemons( data.results ));
-    this.resetInput();
+      (data: {results: Pokemon[]}) => this.setCurrentPokemons( data.results )
+       );
   }
 
   orderAlphabetically() {
     this.filteredPokemons.sort( (a,b) => a.name.localeCompare(b.name));
   }
-
-  resetInput() {
-    this.inputFilter = '';
-  }
-
 }

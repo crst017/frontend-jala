@@ -8,9 +8,10 @@
     </div>
 
     <div class="filter-options">
-      <form class="pagination" (submit)="paginate()">
-        <input id="offset" placeholder="Offset" type="text" [(ngModel)]="offset" name="offset">
-        <button>Search</button>
+      <form class="pagination">
+        <button (click)="paginate('less')"><</button>
+        <span>{{ page + 1}}</span>
+        <button (click)="paginate('more')">></button>
       </form>
 
       <button (click)="orderAlphabetically()" >A - Z</button>
@@ -29,7 +30,7 @@
   <div
     class="not-found"
     *ngIf="filteredPokemons.length === 0">
-    <img  src="assets/pokemonNotFound.jpg" alt="pokemon-not-found">
+    <img  src="assets/pokemonNotFound.png" alt="pokemon-not-found">
     <span>Who's that Pokémon ?</span>
     <span>Sorry, we couldn't find that Pokémon</span>
   </div>

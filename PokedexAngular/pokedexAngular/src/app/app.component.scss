@@ -15,7 +15,7 @@ $color-icon: #ff4d4d;
   "header header header header header header header header header header header header"
   ". main main main main main main main main main main ."
   "footer footer footer footer footer footer footer footer footer footer footer footer";
-  background-color: $bg-body;
+  background-color: var(--main-bg-color);
 }
 
 app-header {

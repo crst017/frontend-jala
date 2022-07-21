@@ -10,8 +10,9 @@ header {
   align-items: center;
   padding: 20px 9%;
   font-size: 40px;
-  background-color: $bg-header;
-  border-bottom: 3px solid $bg-border;
+  background-color: var(--main-bg-color);
+  border-bottom: 3px solid black;
+  box-shadow: 0px 8px 15px $bg-border;
 
   nav {
     display: flex;
