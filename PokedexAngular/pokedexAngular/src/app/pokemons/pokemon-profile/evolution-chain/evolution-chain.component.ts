@@ -20,14 +20,11 @@ export class EvolutionChainComponent implements OnInit {
     private router: Router
   ) { }
 
-
-
   ngOnInit(): void {
 
     const data = this.route.snapshot.data['pokemonData'].pokemonSpecie;
     const chainUrl = data.evolution_chain.url;
     this.getEvolutionChain(chainUrl);
-    console.log(this.bgColors)
   }
 
   async getEvolutionChain( url: string) {

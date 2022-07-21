@@ -27,8 +27,20 @@
     </section>
 
     <section class="pokemon-info">
-      <h2>{{pokemon.name}}</h2>
-      <p class="pokemon-description">{{pokemon.description}}</p>
+      <div class="info-header">
+        <h2>{{pokemon.name}}</h2>
+        <ul class="langs">
+          <li (click)="setLanguage('en')"><img src="assets/reino-unido.png" alt="lang"></li>
+          <li (click)="setLanguage('es')"><img src="assets/espana.png" alt="lang"></li>
+          <li (click)="setLanguage('fr')"><img src="assets/francia.png" alt="lang"></li>
+          <li (click)="setLanguage('it')"><img src="assets/italia.png" alt="lang"></li>
+        </ul>
+      </div>
+      <p class="pokemon-description">{{description}}</p>
+      <div class="extra-info">
+        <span>Height : {{ pokemon.height }} m </span>
+        <span>Weight : {{ pokemon.weight }} kg</span>
+      </div>
     </section>
 
     <section class="pokemon-types">

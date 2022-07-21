@@ -9,8 +9,8 @@ img {
 button.go-back {
   border-color: var(--bg-strong);
   position: absolute;
-  bottom: -56px;
   right:-3px;
+  top:  -60px;
   box-shadow: 0px 8px 15px var(--bg-medium);
 
   &:hover {
@@ -20,7 +20,7 @@ button.go-back {
 
 .pokemon-profile-data {
   background-color: var(--bg-soft);
-  margin-top: 80px;
+  margin-top: 100px;
   display: flex;
   position: relative;
   justify-content: space-between;
@@ -50,6 +50,32 @@ button.go-back {
   padding-top: 30px;
   padding-bottom: 30px;
   width: 30%;
+  position: relative;
+
+  ul {
+    list-style: none;
+    display: flex;
+    background-color: transparent;
+    gap: 10px;
+    align-items: center;
+
+    li {
+      background-color: transparent;
+      cursor: pointer;
+    }
+
+    li > img{
+      width: 25px;
+      height: 25px;
+      background-color: transparent;
+    }
+  }
+
+  .info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   h2 {
     text-transform: capitalize;
@@ -57,6 +83,19 @@ button.go-back {
 
   .pokemon-description {
     margin-top: 30px;
+  }
+
+  .extra-info {
+
+    display: flex;
+    justify-self: flex-end;
+    gap: 15px;
+    position: absolute;
+    bottom: 45px;
+
+    span {
+      border-bottom: 3px solid var(--bg-strong);
+    }
   }
 }
 

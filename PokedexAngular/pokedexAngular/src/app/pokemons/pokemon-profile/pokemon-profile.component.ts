@@ -18,7 +18,9 @@ export class PokemonProfileComponent implements OnInit {
   backgroundTypeColors = pokemonTypeColorMap;
   backgroundTypeColorsMedium = pokemonTypeColorMapMedium;
   backgroundTypeColorsSoft = pokemonTypeColorMapSoft;
-  colorValue = 'pasando valor';
+  lang : string = 'en';
+  flavorTextEntries !:  any[];
+  description !: string;
 
   constructor(
     private location: Location,
@@ -61,18 +63,55 @@ export class PokemonProfileComponent implements OnInit {
       }
     })
 
+    this.flavorTextEntries = dataSpecies.flavor_text_entries;
+    this.getDescription();
+    console.log(dataPokemon);
     this.pokemon = {
       id: this.id,
       name: dataPokemon.name,
       img: img,
-      description: dataSpecies.flavor_text_entries[0].flavor_text,
+      description: this.description,
       sprites: [ dataPokemon.sprites.front_default, dataPokemon.sprites.back_default],
       types: types,
-      stats: stats
+      stats: stats,
+      weight: dataPokemon.weight,
+      height: dataPokemon.height
     }
+
     this.bgStrong = this.backgroundTypeColors[types[0]];
     this.bgMedium = this.backgroundTypeColorsMedium[types[0]];
     this.bgSoft = this.backgroundTypeColorsSoft[types[0]];
   }
 
+  getDescription() {
+    const notRepeatedDescriptions = this.filterRepeatedItems(this.flavorTextEntries);
+    const fullDescriptionByLang = this.filterDescriptionLanguage(notRepeatedDescriptions, this.lang );
+    const cleanedDescription = this.cleanDescription(fullDescriptionByLang);
+    this.description = cleanedDescription
+  }
+
+  filterRepeatedItems( itemsArray: any[]) {
+    const lang = itemsArray.map( item => item.flavor_text)
+    const filtered = itemsArray.filter((item, index) => !lang.includes(item.flavor_text, index + 1));
+    return filtered;
+  }
+
+  filterDescriptionLanguage( description: any, lang: string) {
+    let length = 0
+    const filtered = description.filter( (item: any) => {
+      return (item.language.name === lang && length++ < 2);
+    });
+    return filtered
+  }
+
+  cleanDescription( descriptionArray : any[]) {
+    const cleanedArray = descriptionArray.map( item => item.flavor_text.replace('\f',' '));
+    const concatenatedArray = cleanedArray.join(' ');
+    return concatenatedArray
+  }
+
+  setLanguage( lang: string) {
+    this.lang = lang;
+    this.getDescription();
+  }
 }
