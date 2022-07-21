@@ -6,6 +6,7 @@ export type Pokemon = {
   sprites ?: string[],
   types ?: PokemonType[],
   stats ?: Stats[],
+  evolutionChainId ?: string
 }
 
 export type PokemonType = {

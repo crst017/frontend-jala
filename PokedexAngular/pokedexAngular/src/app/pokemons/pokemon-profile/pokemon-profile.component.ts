@@ -22,11 +22,16 @@ export class PokemonProfileComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const data = this.route.snapshot.data['pokemonData'];
-
-    const id = this.route.snapshot.paramMap.get('id') || '1';
-    this.id = parseInt(id);
-    this.setPokemonInfo( data );
+    this.route.paramMap.subscribe( params => {
+      const data = this.route.snapshot.data['pokemonData'];
+      const id = params.get('id') || '1';
+      this.id = parseInt(id);
+      this.setPokemonInfo(data);
+    })
+    // const data = this.route.snapshot.data['pokemonData'];
+    // const id = this.route.snapshot.paramMap.get('id') || '1';
+    // this.id = parseInt(id);
+    // this.setPokemonInfo( data );
   }
 
   goBack() {

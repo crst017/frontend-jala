@@ -1,0 +1,15 @@
+<div class="evolution-chain" >
+  <div
+    class="evolution-item"
+    *ngFor="let pokemon of evolutionChain; index as i"
+    (click)="goToPokemonProfile(pokemon)">
+    <div class="evolution-card">
+      <div class="img-container">
+        <img [src]="pokemon.image" alt="">
+      </div>
+      <span>{{pokemon.name}}</span>
+    </div>
+
+    <div *ngIf="i < evolutionChain.length - 1" class="arrow"></div>
+  </div>
+</div>

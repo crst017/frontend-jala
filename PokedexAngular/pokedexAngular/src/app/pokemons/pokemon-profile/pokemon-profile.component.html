@@ -1,37 +1,43 @@
+
 <div *ngIf="pokemon" class="pokemon-profile">
 
-  <section class="images-container">
-    <img
-      class="main-image"
-      [src]="pokemon.img" alt="pokemon-image">
-    <img
-      class="sprite"
-      *ngFor="let sprite of pokemon.sprites"
-      [src]="sprite" alt="pokemon-image">
-  </section>
+  <div class="pokemon-profile-data">
 
-  <section class="pokemon-stats">
-    <div
-      class="individual-stat"
-      *ngFor="let stat of pokemon.stats">
-      <span>{{stat.name}}</span>
-      <progress max="100" value="{{stat.base_stat}}"></progress>
-    </div>
-  </section>
+    <section class="images-container">
+      <img
+        class="main-image"
+        [src]="pokemon.img" alt="pokemon-image">
+      <img
+        class="sprite"
+        *ngFor="let sprite of pokemon.sprites"
+        [src]="sprite" alt="pokemon-image">
+    </section>
 
-  <section class="pokemon-info">
-    <h2>{{pokemon.name}}</h2>
-    <p class="pokemon-description">{{pokemon.description}}</p>
-  </section>
+    <section class="pokemon-stats">
+      <div
+        class="individual-stat"
+        *ngFor="let stat of pokemon.stats">
+        <span>{{stat.name}}</span>
+        <progress max="100" value="{{stat.base_stat}}"></progress>
+      </div>
+    </section>
 
-  <section class="pokemon-types">
-    <span class="pokemon-id"># {{pokemon.id}}</span>
-    <span
-        *ngFor="let type of pokemon.types"
-        class="pokemon-type"> {{type}}
-    </span>
-    <button (click)="goBack()">Evolution</button>
-  </section>
+    <section class="pokemon-info">
+      <h2>{{pokemon.name}}</h2>
+      <p class="pokemon-description">{{pokemon.description}}</p>
+    </section>
 
-  <button class="go-back" (click)="goBack()">Go back</button>
+    <section class="pokemon-types">
+      <span class="pokemon-id"># {{pokemon.id}}</span>
+      <span
+          *ngFor="let type of pokemon.types"
+          class="pokemon-type"> {{type}}
+      </span>
+    </section>
+
+    <button class="go-back" (click)="goBack()">Go back</button>
+  </div>
+
+  <evolution-chain></evolution-chain>
+
 </div>

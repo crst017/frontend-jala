@@ -31,4 +31,8 @@ export class PokemonService {
     return lastValueFrom(this.http.get(`${this.api}/pokemon-species/${id}`));
   }
 
+  getEvolutionChain( evolutionChainUrl: string) {
+    return lastValueFrom(this.http.get(evolutionChainUrl));
+  }
+
 }
